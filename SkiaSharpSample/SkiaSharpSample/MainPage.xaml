@@ -1,11 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:SkiaSharpSample"
-             x:Class="SkiaSharpSample.MainPage">
+<ContentPage
+    x:Class="SkiaSharpSample.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:SkiaSharpSample"
+    xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms">
 
-	<Label Text="Welcome to Xamarin.Forms!" 
-           VerticalOptions="Center" 
-           HorizontalOptions="Center" />
+    <StackLayout>
+        <skia:SKCanvasView
+            x:Name="canvasView"
+            BackgroundColor="Gray"
+            HeightRequest="400"
+            HorizontalOptions="Center"
+            PaintSurface="OnPaintSurface"
+            WidthRequest="400" />
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Text="startAngle" VerticalOptions="CenterAndExpand" />
+            <Slider
+                x:Name="sliStart"
+                Grid.Column="1"
+                HorizontalOptions="FillAndExpand"
+                Maximum="360"
+                Minimum="0"
+                ValueChanged="OnStartAngleValueChanged" />
+            <Label
+                Grid.Row="1"
+                Text="sweepAngle"
+                VerticalOptions="CenterAndExpand" />
+            <Slider
+                x:Name="sliSweep"
+                Grid.Row="1"
+                Grid.Column="1"
+                HorizontalOptions="FillAndExpand"
+                Maximum="360"
+                Minimum="0"
+                ValueChanged="OnSweepAngleValueChanged" />
+        </Grid>
+    </StackLayout>
 
 </ContentPage>
